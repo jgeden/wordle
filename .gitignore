@@ -1,0 +1,4 @@
+/.encore
+.vscode
+**/__pycache__
+/secrets
