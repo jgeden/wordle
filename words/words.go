@@ -16,14 +16,16 @@ import (
 
 // encore:api public path=/word
 func TodaysWord(ctx context.Context) (*Response, error) {
-	startDate := time.Date(2022, time.March, 26, 0, 0, 0, 0, time.UTC)
-	today := time.Now()
+	startDate := time.Date(2022, time.March, 26, 4, 0, 0, 0, time.UTC)
+	today := time.Now().In(time.UTC)
 
 	days := int(today.Sub(startDate).Hours() / 24)
 	if days >= len(words) {
 		log.Error("Words list out of indices")
 		return nil, errors.New("Words list out of indices")
 	}
+
+	log.Info(fmt.Sprintf("Today's word is: %s", words[days]))
 	return &Response{words[days]}, nil
 }
 
